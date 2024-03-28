@@ -94,15 +94,18 @@ public class bookList {
         }
         System.out.println("Book intended to be checked in cannot be found: " + bookTitle); // if there is no matching title from what the user has given this message will be thrown
     }
-    public void listBooks() {
+   public static String listBooks() throws IllegalArgumentException {
+        StringBuilder data = new StringBuilder(); //changed String to StringBuilder and initialized the object, StringBuilder is used so the data can be modified and displayed
+
         if (books.isEmpty()) { //isEmpty method is used in the if statement so that if there are no books in the LMS you will be sent to the main menu while being told it is empty
-            System.out.println("No books in the current LMS.");
+            data.append("No books in the current LMS."); //.append StringBuilder method used to print is the listBooksArea if the boolean is false (No books in LMS)
         }
         else {
-            System.out.println("Current LMS: "); //Label for all of the books currently in the LMS
-            for (bookInfo book : books) {
-                System.out.println(book); //for loop prints the entire bookInfo arraylist formatted from the toString created in the bookInfo class.
+            data.append("Current LMS: "); //Label for all the books currently in the LMS, StringBuilder method used to print before displaying in the listBooksArea
+            for (bookInfo book : books) { // for loop created to list all books from the LMS everytime it is called
+                data.append(book.toString()).append('\n'); //for loop prints the entire bookInfo arraylist formatted from the toString created in the bookInfo class.
             }
         }
+        return data.toString(); //returns the data from the LMS that was submitted to the GUI and console, using the toString() method created in the bookInfo class
     }
 }
